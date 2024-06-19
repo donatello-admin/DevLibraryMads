@@ -13,6 +13,7 @@ namespace DevLibraryMads.Infrastructure.Persistence
         public DbSet<Client> Clients { get; private set; }
         public DbSet<Book> Books { get; private set; }
         public DbSet<Order> Orders { get; private set; }
+        public DbSet<User> Users { get; private set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

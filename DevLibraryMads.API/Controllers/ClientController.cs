@@ -1,7 +1,9 @@
 ﻿using DevLibraryMads.Application.Commands.CreateClient;
+using DevLibraryMads.Application.Commands.UpdateClient;
 using DevLibraryMads.Application.Queries.GetClientAll;
 using DevLibraryMads.Application.Queries.GetClientById;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DevLibraryMads.API.Controllers
@@ -19,6 +21,7 @@ namespace DevLibraryMads.API.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "admin,client")]
         public async Task<IActionResult> GetAll(string query)
         {
 
@@ -29,6 +32,7 @@ namespace DevLibraryMads.API.Controllers
         }
 
         [HttpGet("{id}")]
+        [Authorize(Roles = "admin,client")]
         public async Task<IActionResult> GetById(int id)
         {
 
@@ -44,12 +48,26 @@ namespace DevLibraryMads.API.Controllers
         }
 
         [HttpPost]
-
+        [Authorize(Roles = "admin,client")]
         public async Task<IActionResult> Create([FromBody] CreateClientCommand client)
         {
             var id = await _mediator.Send(client);
 
             return CreatedAtAction(nameof(GetById), new { id = id }, client);
+        }
+        [HttpPut]
+        [Authorize(Roles = "admin,client")]
+        public async Task<IActionResult> Update([FromBody] UpdateClientCommand command)
+        {
+            var updateClient = await _mediator.Send(command);
+
+            if (updateClient == null)
+            {
+                return BadRequest();
+            }
+
+
+            return Ok(updateClient);
         }
     }
 }

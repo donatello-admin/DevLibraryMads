@@ -14,5 +14,11 @@
         public string Email { get; private set; }
         public List<Order> Orders { get; private set; }
 
+        public void Update(string fullName,string birdthDate,string email)
+        {
+            FullName = fullName;
+            BirdthDate = birdthDate;
+            Email = email;
+        }
     }
 }

@@ -9,5 +9,6 @@ namespace DevLibraryMads.Core.Repositories
         public Task AddAsync(Order order);
         public Task SaveChangesAsync();
         public Task UpdateAsync(Order order);
+
     }
 }

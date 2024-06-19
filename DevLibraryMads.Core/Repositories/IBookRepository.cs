@@ -8,5 +8,6 @@ namespace DevLibraryMads.Core.Repositories
         public Task<Book> GetByIdAsync(int id);
         public Task AddAsync(Book book);
         public Task SaveChangesAsync();
+        public Task UpdateAsync(Book book);
     }
 }

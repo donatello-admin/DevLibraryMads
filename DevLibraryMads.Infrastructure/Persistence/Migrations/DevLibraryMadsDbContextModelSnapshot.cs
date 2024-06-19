@@ -97,7 +97,7 @@ namespace DevLibraryMads.Infrastructure.Persistence.Migrations
 
                     b.Property<string>("NumPedVda")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<DateTime>("ReturnedAt")
                         .HasColumnType("datetime2");
@@ -105,7 +105,7 @@ namespace DevLibraryMads.Infrastructure.Persistence.Migrations
                     b.Property<int>("StatusOrder")
                         .HasColumnType("int");
 
-                    b.Property<decimal>("ValueFined")
+                    b.Property<decimal?>("ValueFined")
                         .HasColumnType("decimal(18,2)");
 
                     b.HasKey("Id");
@@ -114,7 +114,45 @@ namespace DevLibraryMads.Infrastructure.Persistence.Migrations
 
                     b.HasIndex("Id_Client");
 
+                    b.HasIndex("NumPedVda")
+                        .IsUnique();
+
                     b.ToTable("Orders");
+                });
+
+            modelBuilder.Entity("DevLibraryMads.Core.Entities.User", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Role")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("StatePree")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserName")
+                        .IsUnique();
+
+                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("DevLibraryMads.Core.Entities.Order", b =>

@@ -18,7 +18,7 @@ namespace DevLibraryMads.Application.Queries.GetOrderById
         {
             var order = await _orderRepository.GetByIdAsync(request.Id);
 
-            var orderDTOs = new OrderDTOs(order.NumPedVda, order.Client.FullName, order.Client.BirdthDate, order.Client.Email, order.Book.Title, order.Book.Description, order.Book.Author, order.CreatedAt, order.ReturnedAt, order.StatusOrder);
+            var orderDTOs = new OrderDTOs(order.NumPedVda, order.Client.FullName, order.Client.BirdthDate, order.Client.Email, order.Book.Title, order.Book.Description, order.Book.Author, order.CreatedAt, order.ReturnedAt, order.StatusOrder,order.ValueFined);
 
             return orderDTOs;
         }

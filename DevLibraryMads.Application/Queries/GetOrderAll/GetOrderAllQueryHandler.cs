@@ -19,7 +19,7 @@ namespace DevLibraryMads.Application.Queries.GetOrderAll
             var orders = await _orderRepository.GetAllAsync();
 
             var orderDTOs = orders
-                .Select(o => new OrderDTOs(o.NumPedVda, o.Client.FullName, o.Client.BirdthDate, o.Client.Email, o.Book.Title, o.Book.Description, o.Book.Author, o.CreatedAt, o.ReturnedAt, o.StatusOrder))
+                .Select(o => new OrderDTOs(o.NumPedVda, o.Client.FullName, o.Client.BirdthDate, o.Client.Email, o.Book.Title, o.Book.Description, o.Book.Author, o.CreatedAt, o.ReturnedAt, o.StatusOrder, o.ValueFined))
                 .ToList();
 
             return orderDTOs;

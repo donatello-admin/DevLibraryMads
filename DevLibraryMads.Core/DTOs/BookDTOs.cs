@@ -1,4 +1,6 @@
-﻿namespace DevLibraryMads.Core.DTOs
+﻿using DevLibraryMads.Core.Enums;
+
+namespace DevLibraryMads.Core.DTOs
 {
     public class BookDTOs
     {

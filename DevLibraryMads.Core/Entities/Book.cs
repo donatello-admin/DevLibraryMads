@@ -1,4 +1,6 @@
-﻿namespace DevLibraryMads.Core.Entities
+﻿using DevLibraryMads.Core.Enums;
+
+namespace DevLibraryMads.Core.Entities
 {
     public class Book : EntityBase
     {
@@ -13,5 +15,12 @@
         public string Description { get; private set; }
         public string Author { get; private set; }
         public List<Order> Orders { get; private set; }
+
+        public void Update(string  title, string description, string author)
+        {
+            Title = title;
+            Description = description;
+            Author = author;
+        }
     }
 }

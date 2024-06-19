@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace DevLibraryMads.Infrastructure.Persistence.Migrations
 {
     /// <inheritdoc />
-    public partial class Initial_Persistence : Migration
+    public partial class Initial_Migration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -44,14 +44,31 @@ namespace DevLibraryMads.Infrastructure.Persistence.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Users",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UserName = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Password = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Role = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    StatePree = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Users", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Orders",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    NumPedVda = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    NumPedVda = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     StatusOrder = table.Column<int>(type: "int", nullable: false),
-                    ValueFined = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    ValueFined = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
                     Id_Client = table.Column<int>(type: "int", nullable: false),
                     Id_Book = table.Column<int>(type: "int", nullable: false),
                     ReturnedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -83,6 +100,18 @@ namespace DevLibraryMads.Infrastructure.Persistence.Migrations
                 name: "IX_Orders_Id_Client",
                 table: "Orders",
                 column: "Id_Client");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Orders_NumPedVda",
+                table: "Orders",
+                column: "NumPedVda",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Users_UserName",
+                table: "Users",
+                column: "UserName",
+                unique: true);
         }
 
         /// <inheritdoc />
@@ -90,6 +119,9 @@ namespace DevLibraryMads.Infrastructure.Persistence.Migrations
         {
             migrationBuilder.DropTable(
                 name: "Orders");
+
+            migrationBuilder.DropTable(
+                name: "Users");
 
             migrationBuilder.DropTable(
                 name: "Books");
