@@ -4,11 +4,11 @@ namespace DevLibraryMads.Core.DTOs
 {
     public class OrderDTOs
     {
-        public OrderDTOs(string numPedVda, string fullName, string birdthDate, string email, string title, string description, string author, DateTime createdAt, DateTime returnedAt, StatusOrderEnum statusOrdem)
+        public OrderDTOs(string numPedVda, string fullName, string birdthDate, string email, string title, string description, string author, DateTime createdAt, DateTime returnedAt, StatusOrderEnum statusOrdem,decimal? valueFined)
         {
             NumPedVda = numPedVda;
             StatusOrder = statusOrdem;
-            ValueFined = 0;
+            ValueFined = valueFined;
             FullName = fullName;
             BirdthDate = birdthDate;
             Email = email;
@@ -21,7 +21,7 @@ namespace DevLibraryMads.Core.DTOs
 
         public string NumPedVda { get; set; }
         public StatusOrderEnum StatusOrder { get; set; }
-        public decimal ValueFined { get; set; }
+        public decimal? ValueFined { get; set; }
         public string FullName { get; set; }
         public string BirdthDate { get; set; }
         public string Email { get; set; }

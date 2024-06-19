@@ -10,13 +10,17 @@ namespace DevLibraryMads.Infrastructure.Persistence.Configurations
         {
             builder.HasKey(o => o.Id);
 
+            builder.HasIndex(o => o.NumPedVda).IsUnique();
+
             builder.HasOne(c => c.Client)
                 .WithMany(c => c.Orders)
-                .HasForeignKey(o => o.Id_Client);
+                .HasForeignKey(o => o.Id_Client)
+                .OnDelete(DeleteBehavior.Cascade);
 
             builder.HasOne(b => b.Book)
                 .WithMany(o => o.Orders)
-                .HasForeignKey(o => o.Id_Book);
+                .HasForeignKey(o => o.Id_Book)
+                .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

@@ -56,10 +56,22 @@ namespace DevLibraryMads.Infrastructure.Persistence.Repositories
             {
                 sqlConnection.Open();
 
-                var script = "UPDATE Orders SET StatusOrder = @statusOrder, ReturnedAt = @returnedAt, ValueFined = @valueFined WHERE NumPedVda = @numpedvda";
+                var script = @"
+                            UPDATE Orders 
+                            SET 
+                                Orders.StatusOrder = @statusOrder, 
+                                Orders.ReturnedAt = @returnedAt, 
+                                Orders.ValueFined = @valueFined
+                            FROM Orders
+                            WHERE Orders.NumPedVda = @numpedvda";
 
-                await sqlConnection.ExecuteAsync(script, new { StatusOrder = StatusOrderEnum.Returned, ReturnedAt = order.ReturnedAt, ValueFined = order.ValueFined, order.NumPedVda });
-
+                await sqlConnection.ExecuteAsync(script, new
+                {
+                    statusOrder = StatusOrderEnum.Returned,
+                    returnedAt = order.ReturnedAt,
+                    valueFined = order.ValueFined,
+                    numpedvda = order.NumPedVda
+                });
             }
         }
     }

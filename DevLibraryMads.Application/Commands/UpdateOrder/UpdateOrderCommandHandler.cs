@@ -1,5 +1,4 @@
-﻿using DevLibraryMads.Core.Entities;
-using DevLibraryMads.Core.Repositories;
+﻿using DevLibraryMads.Core.Repositories;
 using MediatR;
 
 namespace DevLibraryMads.Application.Commands.UpdateOrder
@@ -22,12 +21,10 @@ namespace DevLibraryMads.Application.Commands.UpdateOrder
             if (order.ReturnedAt != dataNull)
                 return order.Id;
 
-            var orderDTOs = new Order(order.NumPedVda, order.Id_Client, order.Id_Book,order.ValueFined);
+            order.ValueFined = order.IsFined(order.CreatedAt, request.ReturnedAt);
+            order.Update(order.ValueFined, request.ReturnedAt);
 
-            orderDTOs.ValueFined = orderDTOs.IsFined(order.CreatedAt, request.ReturnedAt);
-            orderDTOs.ReturnedAt = request.ReturnedAt;
-
-            await _orderRepository.UpdateAsync(orderDTOs);
+            await _orderRepository.UpdateAsync(order);
 
             return order.Id;
 

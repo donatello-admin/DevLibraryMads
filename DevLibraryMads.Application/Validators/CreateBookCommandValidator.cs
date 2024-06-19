@@ -15,11 +15,14 @@ namespace DevLibraryMads.Application.Validators
 
             RuleFor(b => b.Description)
                 .NotEmpty()
-                .NotNull();
+                .NotNull()
+                .WithMessage("Descrição é obrigatória");
+
 
             RuleFor(b => b.Author)
                 .NotEmpty()
-                .NotNull();
+                .NotNull()
+                .WithMessage("O Autor é obrigatório");
 
         }
     }

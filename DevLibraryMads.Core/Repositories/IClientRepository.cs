@@ -8,5 +8,6 @@ namespace DevLibraryMads.Core.Repositories
         public Task<Client> GetByIdAsync(int id);
         public Task AddAsync(Client client);
         public Task SaveChangesAsync();
+        public Task UpdateAsync(Client client);
     }
 }

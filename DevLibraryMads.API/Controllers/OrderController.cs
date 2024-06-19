@@ -3,6 +3,7 @@ using DevLibraryMads.Application.Commands.UpdateOrder;
 using DevLibraryMads.Application.Queries.GetOrderAll;
 using DevLibraryMads.Application.Queries.GetOrderById;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DevLibraryMads.API.Controllers
@@ -20,6 +21,7 @@ namespace DevLibraryMads.API.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "admin,client")]
         public async Task<IActionResult> GetAll(string query)
         {
             var getAllOrderQuery = new GetOrderAllQuery(query);
@@ -30,6 +32,7 @@ namespace DevLibraryMads.API.Controllers
         }
 
         [HttpGet("{id}")]
+        [Authorize(Roles = "admin,client")]
         public async Task<IActionResult> GetById(int id)
         {
 
@@ -45,6 +48,7 @@ namespace DevLibraryMads.API.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "client, admin")]
         public async Task<IActionResult> Create([FromBody] CreateOrderCommand orderCommand)
         {
             var id = await _mediator.Send(orderCommand);
@@ -54,9 +58,10 @@ namespace DevLibraryMads.API.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> ReturnedBook(int id, [FromBody] UpdateOrderCommand orderCommand)
+        [Authorize(Roles = "admin")]
+        public async Task<IActionResult> ReturnedBook(int id)
         {
-            var updateOrder = new UpdateOrderCommand(id, orderCommand.ReturnedAt);
+            var updateOrder = new UpdateOrderCommand(id);
 
             await _mediator.Send(updateOrder);
 

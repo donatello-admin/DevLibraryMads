@@ -40,5 +40,13 @@ namespace DevLibraryMads.Core.Entities
 
             return valueFined;
         }
+
+        public void Update(decimal? valueFined,DateTime returnedAt)
+        {
+            ValueFined = valueFined;
+            ReturnedAt = returnedAt;
+            StatusOrder = StatusOrderEnum.Returned;
+        }
+
     }
 }

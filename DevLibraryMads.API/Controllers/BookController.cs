@@ -1,7 +1,10 @@
 ﻿using DevLibraryMads.Application.Commands.CreateBook;
+using DevLibraryMads.Application.Commands.LoginUser;
+using DevLibraryMads.Application.Commands.UpdateBook;
 using DevLibraryMads.Application.Queries.GetBookAll;
 using DevLibraryMads.Application.Queries.GetBookById;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DevLibraryMads.API.Controllers
@@ -19,6 +22,7 @@ namespace DevLibraryMads.API.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "admin,client")]
         public async Task<IActionResult> GetAll(string query)
         {
             var getBookAll = new GetBookAllQuery(query);
@@ -28,6 +32,7 @@ namespace DevLibraryMads.API.Controllers
         }
 
         [HttpGet("{id}")]
+        [Authorize(Roles = "admin,client")]
         public async Task<IActionResult> GetById(int id)
         {
 
@@ -42,12 +47,28 @@ namespace DevLibraryMads.API.Controllers
 
         // POST api/<BookController>
         [HttpPost]
+        [Authorize(Roles = "admin")]
         public async Task<IActionResult> Create([FromBody] CreateBookCommand bookCommand)
         {
 
             var id = await _mediator.Send(bookCommand);
 
             return CreatedAtAction(nameof(GetById), new { id = id }, bookCommand);
+        }
+
+        [HttpPut]
+        [Authorize(Roles = "admin")]
+        public async Task<IActionResult> Update([FromBody] UpdateBookCommand command)
+        {
+            var updateBook = await _mediator.Send(command);
+
+            if (updateBook == null)
+            {
+                return BadRequest();
+            }
+
+
+            return Ok(updateBook);
         }
     }
 }
