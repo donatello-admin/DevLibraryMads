@@ -21,7 +21,7 @@ namespace DevLibraryMads.API.Controllers
         }
 
         [HttpGet]
-        [Authorize(Roles = "admin,client")]
+        [Authorize(Roles = "admin")]
         public async Task<IActionResult> GetAll(string query)
         {
             var getAllOrderQuery = new GetOrderAllQuery(query);
@@ -32,7 +32,7 @@ namespace DevLibraryMads.API.Controllers
         }
 
         [HttpGet("{id}")]
-        [Authorize(Roles = "admin,client")]
+        [Authorize(Roles = "admin")]
         public async Task<IActionResult> GetById(int id)
         {
 
@@ -48,7 +48,7 @@ namespace DevLibraryMads.API.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles = "client, admin")]
+        [Authorize(Roles = "admin")]
         public async Task<IActionResult> Create([FromBody] CreateOrderCommand orderCommand)
         {
             var id = await _mediator.Send(orderCommand);

@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DevLibraryMads.Infrastructure.Persistence.Migrations
 {
     [DbContext(typeof(DevLibraryMadsDbContext))]
-    [Migration("20240619220940_AddLoginColumns")]
+    [Migration("20240620002151_AddLoginColumns")]
     partial class AddLoginColumns
     {
         /// <inheritdoc />
@@ -43,6 +43,9 @@ namespace DevLibraryMads.Infrastructure.Persistence.Migrations
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
 
                     b.Property<string>("Title")
                         .IsRequired()
@@ -139,10 +142,6 @@ namespace DevLibraryMads.Infrastructure.Persistence.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Role")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("StatePree")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
