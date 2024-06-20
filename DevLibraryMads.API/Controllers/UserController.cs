@@ -49,12 +49,6 @@ namespace DevLibraryMads.API.Controllers
         public async Task<IActionResult> Post([FromBody] CreateUserCommand command)
         {
 
-            //var getUserByUserName = new GetUserByUserNameQuery(command.UserName);
-            //var validUser = _mediator.Send(getUserByUserName);
-
-            //if (validUser.Equals(false))
-            //    return BadRequest();
-
             var id = await _mediator.Send(command);
             return CreatedAtAction(nameof(GetById), new { id = 1 }, command);
         }
