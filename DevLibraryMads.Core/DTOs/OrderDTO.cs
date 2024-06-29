@@ -2,9 +2,9 @@
 
 namespace DevLibraryMads.Core.DTOs
 {
-    public class OrderDTOs
+    public class OrderDTO
     {
-        public OrderDTOs(string numPedVda, string fullName, string birdthDate, string email, string title, string description, string author, DateTime createdAt, DateTime returnedAt, StatusOrderEnum statusOrdem,decimal? valueFined)
+        public OrderDTO(string numPedVda, string fullName, string birdthDate, string email, string title, string description, string author, DateTime createdAt, DateTime returnedAt, StatusOrderEnum statusOrdem,decimal? valueFined, StatusPaymentsEnum statusPaymentsEnum)
         {
             NumPedVda = numPedVda;
             StatusOrder = statusOrdem;
@@ -17,6 +17,7 @@ namespace DevLibraryMads.Core.DTOs
             Author = author;
             CreatedAt = createdAt;
             ReturnedAt = returnedAt;
+            StatusPayment = statusPaymentsEnum;
         }
 
         public string NumPedVda { get; set; }
@@ -30,5 +31,6 @@ namespace DevLibraryMads.Core.DTOs
         public string Author { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime ReturnedAt { get; set; }
+        public StatusPaymentsEnum StatusPayment { get; set; }
     }
 }

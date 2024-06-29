@@ -1,6 +1,6 @@
 ﻿namespace DevLibraryMads.Core.Enums
 {
-    public enum StatusBook
+    public enum StatusBookEnum
     {
         available = 1,
         unavailable = 2

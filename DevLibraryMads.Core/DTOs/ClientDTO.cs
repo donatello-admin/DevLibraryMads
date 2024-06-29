@@ -1,8 +1,8 @@
 ﻿namespace DevLibraryMads.Core.DTOs
 {
-    public class ClientDTOs
+    public class ClientDTO
     {
-        public ClientDTOs(string fullName, string birdthDate, string email)
+        public ClientDTO(string fullName, string birdthDate, string email)
         {
             FullName = fullName;
             BirdthDate = birdthDate;

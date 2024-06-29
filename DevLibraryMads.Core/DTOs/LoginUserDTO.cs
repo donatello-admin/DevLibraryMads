@@ -1,8 +1,8 @@
 ﻿namespace DevLibraryMads.Core.DTOs
 {
-    public class LoginUserDTOs
+    public class LoginUserDTO
     {
-        public LoginUserDTOs(string userName, string token)
+        public LoginUserDTO(string userName, string token)
         {
             UserName = userName;
             Token = token;

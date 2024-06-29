@@ -3,6 +3,7 @@ using DevLibraryMads.Application.Validators;
 using DevLibraryMads.Core.Repositories;
 using DevLibraryMads.Core.Services;
 using DevLibraryMads.Infrastructure.Auth;
+using DevLibraryMads.Infrastructure.Payments;
 using DevLibraryMads.Infrastructure.Persistence;
 using DevLibraryMads.Infrastructure.Persistence.Repositories;
 using FluentValidation;
@@ -22,13 +23,15 @@ var connectionString = builder.Configuration.GetConnectionString("DevLibraryMads
 
 builder.Services.AddDbContext<DevLibraryMadsDbContext>(options => options.UseSqlServer(connectionString));
 
+builder.Services.AddHttpClient();
+
 builder.Services.AddScoped<IClientRepository, ClientRepository>();
 builder.Services.AddScoped<IBookRepository, BookRepository>();
 builder.Services.AddScoped<IOrderRepository, OrderRepository>();
 builder.Services.AddScoped<IUserRepository,UserRepository>();
 
 builder.Services.AddScoped<IAuthService,AuthService>();
-
+builder.Services.AddScoped<IPaymentsService,PaymentsService>();
 
 builder.Services.AddMediatR(typeof(CreateClientCommand));
 

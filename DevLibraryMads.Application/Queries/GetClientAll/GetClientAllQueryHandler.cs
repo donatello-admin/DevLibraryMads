@@ -4,7 +4,7 @@ using MediatR;
 
 namespace DevLibraryMads.Application.Queries.GetClientAll
 {
-    public class GetClientAllQueryHandler : IRequestHandler<GetClientAllQuery, List<ClientDTOs>>
+    public class GetClientAllQueryHandler : IRequestHandler<GetClientAllQuery, List<ClientDTO>>
     {
         private readonly IClientRepository _clientRepository;
 
@@ -13,12 +13,12 @@ namespace DevLibraryMads.Application.Queries.GetClientAll
             _clientRepository = clientRepository;
         }
 
-        public async Task<List<ClientDTOs>> Handle(GetClientAllQuery request, CancellationToken cancellationToken)
+        public async Task<List<ClientDTO>> Handle(GetClientAllQuery request, CancellationToken cancellationToken)
         {
             var clients = await _clientRepository.GetAllAsync();
 
             var clientDTO = clients
-                .Select(c => new ClientDTOs(c.FullName, c.BirdthDate, c.Email))
+                .Select(c => new ClientDTO(c.FullName, c.BirdthDate, c.Email))
                 .ToList();
 
             return clientDTO;

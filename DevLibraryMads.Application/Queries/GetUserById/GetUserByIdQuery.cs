@@ -3,7 +3,7 @@ using MediatR;
 
 namespace DevLibraryMads.Application.Queries.GetUserById
 {
-    public class GetUserByIdQuery : IRequest<UserDTOs>
+    public class GetUserByIdQuery : IRequest<UserDTO>
     {
         public GetUserByIdQuery(int id)
         {

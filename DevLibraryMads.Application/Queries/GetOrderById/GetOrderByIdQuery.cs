@@ -3,7 +3,7 @@ using MediatR;
 
 namespace DevLibraryMads.Application.Queries.GetOrderById
 {
-    public class GetOrderByIdQuery : IRequest<OrderDTOs>
+    public class GetOrderByIdQuery : IRequest<OrderDTO>
     {
         public GetOrderByIdQuery(int id)
         {

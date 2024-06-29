@@ -9,11 +9,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace DevLibraryMads.Infrastructure.Persistence.Migrations
+namespace DevLibraryMads.Infrastructure.Persistece.Migrations
 {
     [DbContext(typeof(DevLibraryMadsDbContext))]
-    [Migration("20240620002151_AddLoginColumns")]
-    partial class AddLoginColumns
+    [Migration("20240629202245_Initial_Migration")]
+    partial class Initial_Migration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -109,6 +109,9 @@ namespace DevLibraryMads.Infrastructure.Persistence.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<int>("StatusOrder")
+                        .HasColumnType("int");
+
+                    b.Property<int>("StatusPayment")
                         .HasColumnType("int");
 
                     b.Property<decimal?>("ValueFined")

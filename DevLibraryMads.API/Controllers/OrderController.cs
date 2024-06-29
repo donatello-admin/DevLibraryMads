@@ -1,4 +1,5 @@
 ﻿using DevLibraryMads.Application.Commands.CreateOrder;
+using DevLibraryMads.Application.Commands.FinishOrder;
 using DevLibraryMads.Application.Commands.UpdateOrder;
 using DevLibraryMads.Application.Queries.GetOrderAll;
 using DevLibraryMads.Application.Queries.GetOrderById;
