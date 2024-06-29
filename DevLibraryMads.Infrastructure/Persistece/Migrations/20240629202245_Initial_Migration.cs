@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace DevLibraryMads.Infrastructure.Persistence.Migrations
+namespace DevLibraryMads.Infrastructure.Persistece.Migrations
 {
     /// <inheritdoc />
     public partial class Initial_Migration : Migration
@@ -72,6 +72,7 @@ namespace DevLibraryMads.Infrastructure.Persistence.Migrations
                     Id_Client = table.Column<int>(type: "int", nullable: false),
                     Id_Book = table.Column<int>(type: "int", nullable: false),
                     ReturnedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    StatusPayment = table.Column<int>(type: "int", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>

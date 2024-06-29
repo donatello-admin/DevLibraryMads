@@ -3,7 +3,7 @@ using MediatR;
 
 namespace DevLibraryMads.Application.Queries.GetUserAll
 {
-    public class GetUserAllQuery : IRequest<List<UserDTOs>>
+    public class GetUserAllQuery : IRequest<List<UserDTO>>
     {
         public GetUserAllQuery(string query)
         {

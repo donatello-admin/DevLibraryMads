@@ -3,7 +3,7 @@ using MediatR;
 
 namespace DevLibraryMads.Application.Queries.GetClientById
 {
-    public class GetClientByIdQuery : IRequest<ClientDTOs>
+    public class GetClientByIdQuery : IRequest<ClientDTO>
     {
         public GetClientByIdQuery(int id)
         {

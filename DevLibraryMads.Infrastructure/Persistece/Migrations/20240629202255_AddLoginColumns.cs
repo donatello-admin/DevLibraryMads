@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace DevLibraryMads.Infrastructure.Persistence.Migrations
+namespace DevLibraryMads.Infrastructure.Persistece.Migrations
 {
     /// <inheritdoc />
     public partial class AddLoginColumns : Migration

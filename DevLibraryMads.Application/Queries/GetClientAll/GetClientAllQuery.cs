@@ -3,7 +3,7 @@ using MediatR;
 
 namespace DevLibraryMads.Application.Queries.GetClientAll
 {
-    public class GetClientAllQuery : IRequest<List<ClientDTOs>>
+    public class GetClientAllQuery : IRequest<List<ClientDTO>>
     {
         public GetClientAllQuery(string query)
         {

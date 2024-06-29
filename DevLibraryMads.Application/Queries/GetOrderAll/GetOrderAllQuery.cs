@@ -3,7 +3,7 @@ using MediatR;
 
 namespace DevLibraryMads.Application.Queries.GetOrderAll
 {
-    public class GetOrderAllQuery : IRequest<List<OrderDTOs>>
+    public class GetOrderAllQuery : IRequest<List<OrderDTO>>
     {
         public GetOrderAllQuery(string query)
         {

@@ -1,5 +1,4 @@
-﻿using DevLibraryMads.Core.Entities;
-using DevLibraryMads.Core.Repositories;
+﻿using DevLibraryMads.Core.Repositories;
 using MediatR;
 
 namespace DevLibraryMads.Application.Commands.UpdateOrder
@@ -25,6 +24,7 @@ namespace DevLibraryMads.Application.Commands.UpdateOrder
                 return order.Id;
 
             order.ValueFined = order.IsFined(order.CreatedAt, request.ReturnedAt);
+
             order.Update(order.ValueFined, request.ReturnedAt);
 
             await _orderRepository.UpdateAsync(order);

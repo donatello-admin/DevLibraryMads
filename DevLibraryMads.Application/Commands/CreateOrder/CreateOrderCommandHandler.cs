@@ -22,7 +22,7 @@ namespace DevLibraryMads.Application.Commands.CreateOrder
             var book = await _bookRepository.GetByIdAsync(request.Id_Book);
             if(book != null)
             {
-                if(book.Status.Equals(StatusBook.unavailable))
+                if(book.Status.Equals(StatusBookEnum.unavailable))
                 {
                     throw new Exception("O Livro já está alugado.");
                 }

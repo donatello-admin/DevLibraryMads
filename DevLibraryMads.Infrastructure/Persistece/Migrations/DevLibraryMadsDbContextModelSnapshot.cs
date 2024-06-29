@@ -4,19 +4,16 @@ using DevLibraryMads.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace DevLibraryMads.Infrastructure.Persistence.Migrations
+namespace DevLibraryMads.Infrastructure.Persistece.Migrations
 {
     [DbContext(typeof(DevLibraryMadsDbContext))]
-    [Migration("20240620002136_Initial_Migration")]
-    partial class Initial_Migration
+    partial class DevLibraryMadsDbContextModelSnapshot : ModelSnapshot
     {
-        /// <inheritdoc />
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -109,6 +106,9 @@ namespace DevLibraryMads.Infrastructure.Persistence.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<int>("StatusOrder")
+                        .HasColumnType("int");
+
+                    b.Property<int>("StatusPayment")
                         .HasColumnType("int");
 
                     b.Property<decimal?>("ValueFined")

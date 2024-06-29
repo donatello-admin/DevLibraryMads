@@ -2,9 +2,9 @@
 
 namespace DevLibraryMads.Core.DTOs
 {
-    public class BookDTOs
+    public class BookDTO
     {
-        public BookDTOs(string title, string description, string author)
+        public BookDTO(string title, string description, string author)
         {
             Title = title;
             Description = description;

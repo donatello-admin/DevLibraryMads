@@ -11,6 +11,7 @@ namespace DevLibraryMads.Core.Entities
             ValueFined = valueFined;
             Id_Client = id_Client;
             Id_Book = id_Book;
+            StatusPayment = StatusPaymentsEnum.NaoPago;
         }
 
         public string NumPedVda { get; private set; }
@@ -21,6 +22,7 @@ namespace DevLibraryMads.Core.Entities
         public int Id_Book { get; private set; }
         public Book Book { get; private set; }
         public DateTime ReturnedAt { get; set; }
+        public StatusPaymentsEnum StatusPayment { get; set; }
 
         public decimal IsFined(DateTime createdAt, DateTime returnedAt)
         {
@@ -46,6 +48,11 @@ namespace DevLibraryMads.Core.Entities
             ValueFined = valueFined;
             ReturnedAt = returnedAt;
             StatusOrder = StatusOrderEnum.Returned;
+        }
+
+        public void FinishOrder()
+        {
+            StatusPayment = StatusPaymentsEnum.Pago;
         }
 
     }

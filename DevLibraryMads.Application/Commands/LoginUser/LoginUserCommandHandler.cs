@@ -5,7 +5,7 @@ using MediatR;
 
 namespace DevLibraryMads.Application.Commands.LoginUser
 {
-    public class LoginUserCommandHandler : IRequestHandler<LoginUserCommand, LoginUserDTOs>
+    public class LoginUserCommandHandler : IRequestHandler<LoginUserCommand, LoginUserDTO>
     {
         private readonly IAuthService _authService;
         private readonly IUserRepository _userRepository;
@@ -15,7 +15,7 @@ namespace DevLibraryMads.Application.Commands.LoginUser
             _authService = authService;
             _userRepository = userRepository;
         }
-        public async Task<LoginUserDTOs> Handle(LoginUserCommand request, CancellationToken cancellationToken)
+        public async Task<LoginUserDTO> Handle(LoginUserCommand request, CancellationToken cancellationToken)
         {
             //Utlizar o mesmo algoritmo para criar o hash dessa semana
             var passwordHash = _authService.ComputeSha256Hash(request.Password);
@@ -32,7 +32,7 @@ namespace DevLibraryMads.Application.Commands.LoginUser
             var token = _authService.GenerateJwtToken(user.UserName, user.Role);
 
             // se existir gero o token usando os dados do usuario
-            return new LoginUserDTOs(user.UserName, token);
+            return new LoginUserDTO(user.UserName, token);
         }
     }
 }
